@@ -1,0 +1,30 @@
+{%  extends "@Blog/layout.html.twig" %}
+
+{% block content %}
+
+    <div class="col-lg-4">
+        <h2>Identificate</h2>
+        <form action="{{ path("login_check") }}" method="POST">
+            <label>User</label>
+            <input type="text" class="form-control" name="_username" id="username" value="{{ last_username }}">
+            <label>Password</label>
+            <input type="password" id="password" name="_password" class="form-control">
+            <input type="submit" class="btn btn-primary" value="Entrar" >
+            <input type="hidden" name="_target_path" value="/login">
+        </form>
+    </div>
+    <div class="col-lg-4">
+        <h2>Registrate</h2>
+
+        {%  for message in app.session.flashbag().get('status') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
+       {{ form_start(form) }}
+       {{ form_end(form) }}
+    </div>
+    <div class="clearfix"></div>
+{% endblock %}
